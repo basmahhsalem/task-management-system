@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('task_dependencies', function (Blueprint $table) {
-            $table->bigIncrements('task_dep_id'); 
-                        $table->unsignedBigInteger('task_id');
+        Schema::create('task_dependencies', function (Blueprint $table) {
+            $table->bigIncrements('task_dep_id');
+            $table->unsignedBigInteger('task_id');
             $table->unsignedBigInteger('depend_id');
 
 
@@ -29,7 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-                Schema::dropIfExists('task_dependencies');
-
+        Schema::dropIfExists('task_dependencies');
     }
 };
