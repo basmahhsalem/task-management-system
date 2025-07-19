@@ -11,7 +11,7 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function authenticate(Request $request)
+    public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'username' => 'required|string',
@@ -24,7 +24,7 @@ class AuthController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
-        
+
         $result = DB::select('EXEC stp_users_load @UserName = ?', [
             $request->username,
         ]);
