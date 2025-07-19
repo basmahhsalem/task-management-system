@@ -76,7 +76,7 @@ class TaskController extends Controller
     {
         $userId = auth()->id();
         $validator = Validator::make($request->all(), [
-            'status' => 'sometimes|required|string|in:pending,completed,cancelled',
+            'status' => 'sometimes|nullable|string|in:pending,completed,cancelled',
             'due_date_from' => 'sometimes|nullable|date',
             'due_date_to' => 'sometimes|nullable|date',
             'assigned_to' => 'sometimes|nullable|integer',
@@ -168,11 +168,11 @@ class TaskController extends Controller
     public function UpdateTask(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'sometimes|string',
+            'title' => 'sometimes|nullable|string',
             'description' => 'sometimes|nullable|string',
-            'status' => 'sometimes|string|in:pending,completed,cancelled',
-            'assigned_to' => 'sometimes|integer',
-            'due_date' => 'sometimes|date',
+            'status' => 'sometimes|nullable|string|in:pending,completed,cancelled',
+            'assigned_to' => 'sometimes|nullable|integer',
+            'due_date' => 'sometimes|nullable|date',
         ]);
         if ($validator->fails()) {
             return response()->json([
