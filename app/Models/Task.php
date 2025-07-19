@@ -9,23 +9,34 @@ use Illuminate\Notifications\Notifiable;
 // use Laravel\Sanctum\HasApiTokens;
 use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable
+class Task extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
-        protected $primaryKey = 'user_id'; // Use your actual PK name
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'username',
-        'role_id',
-        'password',
+        'title',
+        'description',
+        'status',
+        'assigned_to',
+        'assigned_by',
+        'due_date',
+        'created_by',
+        'updated_by',
     ];
-  
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    // protected $hidden = [
+    //     'password',
+    //     'remember_token',
+    // ];
 
     /**
      * The attributes that should be cast.
@@ -33,6 +44,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 }
